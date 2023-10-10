@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import stripe from './stripe';
+import { PrismaClient } from "@prisma/client";
+import stripe from "./stripe";
 
 const prisma = new PrismaClient();
 
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   try {
     paymentIntent = await stripe.paymentIntents.create({
       amount: 97 * 100,
-      currency: 'usd',
+      currency: "usd",
       metadata: {
         email,
       },
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Error creating payment intent',
+      statusMessage: "Error creating payment intent",
     });
   }
 
@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'Error creating course purchase',
+      statusMessage: "Error creating course purchase",
     });
   }
 
